@@ -33,48 +33,47 @@
             <span id="hostNameError" class="error"></span>
 
             <div id="button_invite_friend">
-                <button class="button" id="invitation_send_button">Enviar</button>
-                <button class="button" id="invitation_cancel_button">Cancelar</button>        
+                <button class="button" id="invitation_cancel_button">Cancelar</button>    
+                <button class="button" id="invitation_send_button">Enviar</button>    
             </div>
         </dialog>
+        
         <header class="header" id="header">
             <div class="navbar">
-                <a href="#event_form">Inicio</a>
-                <a href="#how_it_works">Como funciona</a>
-                <a href="#invitation_form">Invita a un amigo</a>
-                <a href="#contact_form">Contacto</a>
+                <a href="#section_1">Inicio</a>
+                <a href="#section_2">¿Cómo funciona?</a>
+                <a href="#section_3">Invita a un amigo</a>
+                <a href="#section_4">Contacto</a>
             </div>
             <div class="toggle_btn" id="toggle_btn">
                 <img src="resources/menu_bars.svg" />
             </div>
             <div class="dropdown_menu" id="dropdown_menu">
-                <a href="#event_form">Inicio</a>
-                <a href="#how_it_works">Como funciona</a>
-                <a href="#invitation_form">Invita a un amigo</a>
-                <a href="#contact_form">Contacto</a>
+                <a href="#section_1">Inicio</a>
+                <a href="#section_2">¿Cómo funciona?</a>
+                <a href="#section_3">Invita a un amigo</a>
+                <a href="#section_4">Contacto</a>
             </div>
             </nav>
-           
         </header>
-      
-        <div class="space-between"></div>
+        <div class="divider" id="section_1"></div>
         <div id="event_form" class="wrapper">
             <div id="join-event" class="join-event">
-                <div class="wrapper timezone">
+                <div class="wrapper timezone" style="border: 3px solid red">
                     <div>
                         <img src="resources/date_time.svg"/>
                     </div>
                     <div id="date_time" class="date_and_time">
                     </div>                
                 </div>
-                <div class="wrapper timezone">
+                <div class="wrapper timezone" style="border: 1px solid black">
                     <div>
                         <img src="resources/location.svg" />
                     </div>
                     <div id="time_zone" class="date_and_time">
                     </div>
                 </div>
-                <a href="https://us04web.zoom.us/j/72949553754?pwd=aaS3qhM9FYkvrWPeN2QGo3ykX97abb.1" target="_blank"><button class="button button_join_event">Unete al evento</button></a>
+                <button class="button" id="button_join_event">Unete al evento</button>
             </div>
             <div id="information-project" class="information_project">
                 <div class="tittle_information_project">titulo</div>
@@ -87,8 +86,8 @@
                 <label>aqui va el logo</label>
             </div>
         </div>
-        
-        <div class="work_and_invite">
+        <div id="section_2"></div>
+        <div class="work_and_invite" id="work_invite">
             <div id="how_it_works" class="wrapper_center">
                 <label class="tittle"><strong>¿Cómo funciona?</strong></label>
                 <div class="wrapper">
@@ -109,15 +108,15 @@
                     </div>
                 </div>
             </div>
-         
+            <div class="divider" id="section_3"></div>
             <div id="invitation_form" class="wrapper_center">
                 <p><strong>Hablar español</strong> con amigos, es mucho mejor!<br>
                     Cuentales sobre el club.<p>
                 <button id="btn_invite_friend" class="button button_send_invitation">Invitar a un amigo</button>
             </div>
         </div>
-        <div>
-            <div class="tittle_contact"><h3>CONTACTANOS</h3></div>
+        <div id="section_4"></div>
+        <div class="tittle_contact" id="contact_section"><h3>CONTACTANOS</h3></div>
             <div id="contact_form" class="wrapper">
                 <div id="send-contact-form" class="send_contact_form">
                     <label for="fname">Nombre</label>

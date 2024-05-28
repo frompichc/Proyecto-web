@@ -13,19 +13,29 @@ const btnInviteFriend = document.getElementById("btn_invite_friend");
 const inviteFriendModal = document.getElementById("invite_friend");
 const btnCancelInvitation = document.getElementById("invitation_cancel_button");
 const btnSendInvitation = document.getElementById("invitation_send_button")
+const txtHostName = document.getElementById(`host_name`);
+const txtEmailGuest = document.getElementById(`email_guest`);
 
 const toggleBtn = document.getElementById("toggle_btn");
 const dropDownMenu = document.getElementById("dropdown_menu");
+
 // Elements for date and time in event area
 const showDateTime = document.getElementById("date_time");
 const showTimeZone = document.getElementById("time_zone");
+
 // Error elements
 const nameError = document.getElementById("nameError");
 const emailError = document.getElementById("emailError");
 const subjectError = document.getElementById("subjectError");
 const commentError = document.getElementById("commentError");
 
-const date = new Date("2024-12-06T16:00:00.000Z");
+// Event elements
+const btnJoinEvent = document.getElementById("button_join_event");
+
+
+const date = new Date("2024-05-28T09:53:00.000Z");
+const oneHourBeforeEvent = new Date(date.getTime() - 60 * 60 * 1000);
+console.log(`this is one hour before`,oneHourBeforeEvent);
 const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
 dateOptions.timeZoneName = "long";
@@ -80,9 +90,53 @@ btnSendEmail.addEventListener("click", () => {
 })
 
 
+//----- BUTTON JOIN EVENT ----
+btnJoinEvent.disabled = true;
+
+btnJoinEvent.addEventListener(`click`, () => {
+    window.open(`https://us04web.zoom.us/j/72949553754?pwd=aaS3qhM9FYkvrWPeN2QGo3ykX97abb.1`);
+})
+
+
+//---- COUNTDOWN FOR ACTIVATE JOIN EVENT BUTTON
+function checkTime() {
+    const now = new Date();
+    if (now >= oneHourBeforeEvent) {
+        activateButton();
+    } else {
+        // Calcula el tiempo restante y establece un temporizador
+        const timeUntilActivation = oneHourBeforeEvent - now;
+        console.log(timeUntilActivation);
+        setTimeout(activateButton, timeUntilActivation);
+    }
+}
+
+function activateButton() {
+    btnJoinEvent.disabled = false;
+}
+
+checkTime();
+
+
+//------ BUTTONS FOR MODAL INVITE A FRIEND 
 btnInviteFriend.addEventListener("click", () => {
+    txtHostName.value = ``;
+    txtEmailGuest.value = ``;
+    txtHostName.style.border = "1px solid #ccc";
+    txtEmailGuest.style.border = "1px solid #ccc";
     inviteFriendModal.showModal();
     inviteFriendModal.style.display = "flex";
+})
+
+btnSendInvitation.addEventListener(`click`, () => {
+    let sendInvitation = true;
+    sendInvitation = validateInviteFriendForm();
+    console.log(sendInvitation);
+    if (sendInvitation) {
+        alert(`Enviado`);
+        inviteFriendModal.style.display = "none";
+        inviteFriendModal.close();
+    }
 })
 
 btnCancelInvitation.addEventListener("click", () => {
@@ -133,3 +187,36 @@ function validateFormEmail() {
     }
     return noError;
 }
+
+function validateInviteFriendForm() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let noError = true;
+    txtHostName.style.border = "1px solid #ccc";
+    txtEmailGuest.style.border = "1px solid #ccc";
+   
+
+    if (txtHostName.value == ``) {
+        txtHostName.style.border = "1px solid #f90a0a";
+        noError = false;
+    }
+
+    const validEmail = emailRegex.test(emailSender.value);
+
+    if(!validEmail) {
+        emailError.textContent = "Ingresa un email valido";
+        txtEmailGuest.style.border = "1px solid #f90a0a";
+        noError = false;
+    }
+
+    return noError;
+}
+
+//Prevent to close modal-dialog with key ESC
+document.addEventListener(`keydown`, function(event) {
+    if (event.key === `Escape`) {
+        const modals = document.querySelectorAll(`dialog[open]`);
+        modals.forEach(modal => {
+            event.preventDefault();
+        });
+    }
+})

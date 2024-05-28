@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+  
   body {
     font-family: "Rubik", "Monaco", "Garamond" ;
     /*background-color: #F2F2F2;*/
@@ -91,12 +95,12 @@
     width: 100%;
   }
 
-  .space-between{
-    padding-top: 65px;
-  }
-
   .wrapper {
     display: flex;
+  }
+
+  .divider{
+    padding-top: 70px;
   }
 
   .send_contact_form {
@@ -138,7 +142,6 @@
   }
 
 
-
   /*------ Modal email message -----*/
   .email_message{
     position: fixed;
@@ -146,7 +149,7 @@
     top: 0;
     z-index: 1;
     width: 400px;
-    height: 300px;
+    height: 250px;
     border: 0;
     background-color: #FFFFFF;
     border-radius: 6px;
@@ -218,19 +221,26 @@
 
   #button_invite_friend{
     display: flex;
-    flex-direction: column;
     margin-top: 15px;
   }
 
-  #invitation_send_button{
-    margin-bottom: 10px;
-  }
+  #button_invite_friend .button {
+    margin-right: 10px;
+}
 
-  .work_and_invite{
-    background-color: #F2F2F2;
-    padding: 40px 0 40px 0;
-    margin-top: 30px;
-  }
+#button_invite_friend .button:last-child {
+    margin-right: 0; 
+}
+
+#invitation_send_button{
+  margin-bottom: 10px;
+}
+
+.work_and_invite{
+  background-color: #F2F2F2;
+  padding: 40px 0 40px 0;
+  margin-top: 30px;
+}
  
   .wrapper_center {
       display: flex;
@@ -280,8 +290,8 @@
     color: #FFFFFF;
     font-size:20px;
     font-weight: bold;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 
   .how_works {
@@ -326,6 +336,7 @@
 
   .button:hover{
     cursor: pointer;
+    background-color: #fa4333;
   }
 
   
@@ -339,7 +350,7 @@
     height: 50px;
   }
 
-  .button_join_event{
+  #button_join_event{
     width: 300px;
     height: 50px;
   }
@@ -350,6 +361,11 @@
     border: 1px solid #ccc; 
     width: 200px;
     height: 40px;
+  }
+
+  .invite_friend #invitation_cancel_button:hover{
+    background-color: #dedddd;
+    border: 1px solid #dedddd;
   }
 
   .invite_friend #invitation_send_button{
@@ -446,10 +462,6 @@
       padding: 20px 10px;
     }
   
-    .space-between{
-      padding-top: 70px;
-    }
-
     .send_contact_form input[type="text"],
     .send_contact_form input[type="email"],
     .send_contact_form textarea,
