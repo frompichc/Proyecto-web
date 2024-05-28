@@ -15,9 +15,13 @@ const btnCancelInvitation = document.getElementById("invitation_cancel_button");
 const btnSendInvitation = document.getElementById("invitation_send_button")
 const txtHostName = document.getElementById(`host_name`);
 const txtEmailGuest = document.getElementById(`email_guest`);
+const spanHostNameError = document.getElementById(`host_name_error`);
+const spanEmailGuestError = document.getElementById(`email_guest_error`);
 
+//Dropdown menu
 const toggleBtn = document.getElementById("toggle_btn");
 const dropDownMenu = document.getElementById("dropdown_menu");
+const dropDownMenuOptions = dropDownMenu.querySelectorAll(`a`);
 
 // Elements for date and time in event area
 const showDateTime = document.getElementById("date_time");
@@ -47,21 +51,33 @@ const showDate = dateString.split(',');
 showDateTime.innerText = showDate[0] + showDate[1] + ' ' + timeString;
 showTimeZone.innerText = showDate[2];
 
+//Dropdown Menu
 toggleBtn.addEventListener("click", () => {
-    dropDownMenu.classList.toggle('open');
+    dropDownMenu.classList.toggle(`open`);
+})
+
+console.info(dropDownMenuOptions);
+
+dropDownMenuOptions.forEach(option => {
+    option.addEventListener(`click`, () => {
+        console.info("entra aqui")
+        dropDownMenu.classList.remove('open');
+    })
 })
 
 btnSendEmail.addEventListener("click", () => {
     let sendEmail = true;
     sendEmail = validateFormEmail();
-    emailMessageModal.showModal()
+    /*emailMessageModal.showModal()
             emailMessageModal.style.display = "flex";
             setTimeout(function() {
                 emailMessageModal.style.display = "none";
                 emailMessageModal.close();
-            }, 3000);
+            }, 3000);*/
 
-    /*if (sendEmail) {
+  
+
+    if (sendEmail) {
         emailjs.init("IJgiBa0KaSMTs4014");
         let params = {
             to_name: "Fredy Rompich",
@@ -77,15 +93,29 @@ btnSendEmail.addEventListener("click", () => {
             emailMessageModal.showModal()
             emailMessageModal.style.display = "flex";
             setTimeout(function() {
+                firstName.value = ``;
+                emailSender.value = ``;
+                subject.value = ``;
+                comment.value = ``;
+                cleanContactForm();
                 emailMessageModal.style.display = "none";
                 emailMessageModal.close();
+
             }, 3000);
         })
         .catch(err => {
-            alert("esto es en catch", err.message);
+            alert("Error enviando mensaje", err.message);
+            firstName.value = ``;
+            emailSender.value = ``;
+            subject.value = ``;
+            comment.value = ``;
+            cleanContactForm();
         });
-        
-    }*/
+
+    
+    }
+
+    
     
 })
 
@@ -122,8 +152,7 @@ checkTime();
 btnInviteFriend.addEventListener("click", () => {
     txtHostName.value = ``;
     txtEmailGuest.value = ``;
-    txtHostName.style.border = "1px solid #ccc";
-    txtEmailGuest.style.border = "1px solid #ccc";
+    cleanInvitationForm();
     inviteFriendModal.showModal();
     inviteFriendModal.style.display = "flex";
 })
@@ -131,9 +160,7 @@ btnInviteFriend.addEventListener("click", () => {
 btnSendInvitation.addEventListener(`click`, () => {
     let sendInvitation = true;
     sendInvitation = validateInviteFriendForm();
-    console.log(sendInvitation);
     if (sendInvitation) {
-        alert(`Enviado`);
         inviteFriendModal.style.display = "none";
         inviteFriendModal.close();
     }
@@ -149,14 +176,7 @@ btnCancelInvitation.addEventListener("click", () => {
 function validateFormEmail() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let noError = true;
-    firstName.style.border = "1px solid #ccc";
-    emailSender.style.border = "1px solid #ccc";
-    subject.style.border = "1px solid #ccc";
-    comment.style.border = "1px solid #ccc";
-    nameError.textContent = "";
-    emailError.textContent = "";
-    subjectError.textContent = "";
-    comment.textContent = "";
+    cleanContactForm();
 
     if (firstName.value === '') {
         nameError.textContent = "Ingresa tu nombre";
@@ -191,24 +211,41 @@ function validateFormEmail() {
 function validateInviteFriendForm() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let noError = true;
-    txtHostName.style.border = "1px solid #ccc";
-    txtEmailGuest.style.border = "1px solid #ccc";
-   
-
+    cleanInvitationForm();
+    
     if (txtHostName.value == ``) {
         txtHostName.style.border = "1px solid #f90a0a";
+        spanHostNameError.textContent = `Ingresa tu nombre`;
         noError = false;
     }
 
-    const validEmail = emailRegex.test(emailSender.value);
+    const validEmail = emailRegex.test(txtEmailGuest.value);
 
     if(!validEmail) {
-        emailError.textContent = "Ingresa un email valido";
         txtEmailGuest.style.border = "1px solid #f90a0a";
+        spanEmailGuestError.textContent = "Ingresa un email válido";
         noError = false;
     }
 
     return noError;
+}
+
+function cleanContactForm() {
+    firstName.style.border = "1px solid #ccc";
+    emailSender.style.border = "1px solid #ccc";
+    subject.style.border = "1px solid #ccc";
+    comment.style.border = "1px solid #ccc";
+    nameError.textContent = "";
+    emailError.textContent = "";
+    subjectError.textContent = "";
+    commentError.textContent = "";
+}
+
+function cleanInvitationForm() {
+    txtHostName.style.border = "1px solid #ccc";
+    txtEmailGuest.style.border = "1px solid #ccc";
+    spanHostNameError.textContent = ``;
+    spanEmailGuestError.textContent = ``;
 }
 
 //Prevent to close modal-dialog with key ESC

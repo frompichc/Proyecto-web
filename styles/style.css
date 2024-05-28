@@ -44,7 +44,8 @@ html {
   .navbar a:hover::before {
     width: 100%;
   }
-
+ 
+  /* DROPDOWN MENU */
   .toggle_btn {
     display: none;
     cursor: pointer;
@@ -56,7 +57,7 @@ html {
     left: 0rem;
     top: 55px;
     height: 0;
-    width: 300px;
+    width: 100vw; 
     background-color: #FF6D60;
     backdrop-filter: blur(50px);
     border-radius: 10px;
@@ -65,7 +66,7 @@ html {
   }
 
   .dropdown_menu.open {
-    height: 175px;
+    height: 225px;
   }
 
   
@@ -80,20 +81,21 @@ html {
     font-weight: 500;
   }
 
-  .dropdown_menu a::before {
+  
+  /*.dropdown_menu a::before {
     content: '';
     position: absolute;
     top: 100%;
-    left: 0;
-    width: 0;
-    height: 2px;
+    left: 10px;
+    width: 10px;
+    height: 50px;
     background: #FFFFFF;
     transition: .3s;
   }
 
   .dropdown_menu a:hover::before {
     width: 100%;
-  }
+  }*/
 
   .wrapper {
     display: flex;
@@ -214,6 +216,10 @@ html {
     margin-bottom: 16px; /* Bottom margin */
   }
 
+  .invite_friend span{
+    width: 450px;
+  }
+
   .invite_friend label {
     margin-top: 10px;
     width: 450px;
@@ -282,7 +288,9 @@ html {
     flex: 1;
     border: 3px solid #F7D060;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.37);
+    font-size: 20px;
     border-radius: 20px;
+    padding: 10px;
   }
 
   .tittle_information_project{
@@ -290,8 +298,11 @@ html {
     color: #FFFFFF;
     font-size:20px;
     font-weight: bold;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    text-align: center;
+    padding: 10px 0 10px 0;
+    margin: 10px;
+    border-radius: 50px;
+
   }
 
   .how_works {
@@ -301,6 +312,7 @@ html {
     width: 250px;
     height: 300px; 
     margin: 40px 40px 40px 0;
+    box-shadow: 5px 5px 0 0.5px #051B36;
   }
 
   .how_works div{
@@ -332,6 +344,8 @@ html {
     border-radius: 4px;
     font-size:20px;
     font-weight: bold;
+    align-items: center;
+    justify-content: center;
   }
 
   .button:hover{
@@ -374,6 +388,9 @@ html {
   }
 
 
+  .button img{
+    margin-left: 8px;
+  }
 
   /* ----- ERRORS -----*/
   .error {
@@ -397,6 +414,32 @@ html {
 }
 
 
+/* ----------- FOOTER ----------------- */
+footer {
+  background-color: #f8f9fa; /* Color de fondo suave */
+  padding: 10px; /* Espaciado interno */
+  text-align: center; /* Centrar el texto */
+  border-top: 3px solid #e9ecef; /* Borde superior */
+}
+
+footer p {
+  color: #051B36;
+  /*color: #343a40;*/ /* Color del texto */
+  font-size: 16px; /* Tamaño de la fuente */
+  margin: 5px 0; /* Espaciado vertical */
+  line-height: 1.5; /* Altura de línea */
+  
+}
+
+footer button {
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 10px; /* Tamaño de la fuente */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.4s; /* Transición suave para el cambio de color de fondo */
+}
+
 
   /* ----------- RESPONSIVE DESIGN TABLETS -----------------*/
   @media (max-width: 992px) {
@@ -410,6 +453,20 @@ html {
 
     .wrapper{
       flex-direction: column-reverse;
+    }
+
+    .wrapper.frequent_questions{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wrapper_center label{
+      text-align: center;
+    }
+
+    .how_works{
+      margin: 10px 0 10px 0;
     }
 
     .wrapper .timezone{
@@ -492,6 +549,24 @@ html {
     .error {
       width: 340px;
     }
+
+    .invite_friend{
+      width: 400px;
+    }
+
+    
+    .invite_friend input[type="text"],
+    .invite_friend input[type="email"],
+    .invite_friend label,
+    .invite_friend span,
+    .invite_friend .button {
+      width: 390px;
+    }
+
+    #button_invite_friend {
+      display: flex;
+      flex-direction: column-reverse;
+    }
   }
 
     /* ----------- RESPONSIVE DESIGN PHONES -----------------*/
@@ -511,6 +586,19 @@ html {
       #invitation_form{
         margin: 10px 20px 0px 20px;
       }   
+
+      .invite_friend{
+        width: 340px;
+      }
+
+      .invite_friend input[type="text"],
+      .invite_friend input[type="email"],
+      .invite_friend label,
+      .invite_friend span,
+      .invite_friend .button {
+        width: 290px;
+      }
+
     }
   
 
@@ -533,6 +621,22 @@ html {
     .button_send_invitation{
       width: 270px;
     }
+
+    .invite_friend{
+      width: 290px;
+    }
+
+    .invite_friend input[type="text"],
+    .invite_friend input[type="email"],
+    .invite_friend label,
+    .invite_friend span,
+    .invite_friend .button {
+      width: 270px;
+    }
+
+    #button_join_event{
+      width: 250px;
+    }
   }
 
   /* ----------- RESPONSIVE DESIGN PHONES -----------------*/
@@ -544,4 +648,17 @@ html {
     .send_contact_form{
       margin: 10px 10px 0 10px;
     }
+
+    .invite_friend{
+      width: 270px;
+    }
+
+    .invite_friend input[type="text"],
+    .invite_friend input[type="email"],
+    .invite_friend label,
+    .invite_friend span,
+    .invite_friend .button {
+      width: 250px;
+    }
+  
   }

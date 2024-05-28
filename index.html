@@ -26,47 +26,48 @@
             </div>
             <label for="host_name">Nombre</label>
             <input type="text" id="host_name" name="hostName" placeholder="Escribe tu nombre">
-            <span id="hostNameError" class="error"></span>
+            <span id="host_name_error" class="error"></span>
 
             <label for="email_guest">Correo electronico</label>
             <input type="text" id="email_guest" name="emailGuest" placeholder="Escribe el correo electronico de tu amigo">
-            <span id="hostNameError" class="error"></span>
+            <span id="email_guest_error" class="error"></span>
 
             <div id="button_invite_friend">
                 <button class="button" id="invitation_cancel_button">Cancelar</button>    
-                <button class="button" id="invitation_send_button">Enviar</button>    
+                <button class="button" id="invitation_send_button">Enviar<img src="resources/email_sending.svg"/></button>    
             </div>
         </dialog>
-        
+
         <header class="header" id="header">
             <div class="navbar">
                 <a href="#section_1">Inicio</a>
-                <a href="#section_2">¿Cómo funciona?</a>
+                <a href="#section_2">Preguntas frecuentes</a>
                 <a href="#section_3">Invita a un amigo</a>
                 <a href="#section_4">Contacto</a>
+                <a href="#section_5">¡Apoyanos!</a>
             </div>
             <div class="toggle_btn" id="toggle_btn">
                 <img src="resources/menu_bars.svg" />
             </div>
             <div class="dropdown_menu" id="dropdown_menu">
                 <a href="#section_1">Inicio</a>
-                <a href="#section_2">¿Cómo funciona?</a>
+                <a href="#section_2">Preguntas frecuentes</a>
                 <a href="#section_3">Invita a un amigo</a>
                 <a href="#section_4">Contacto</a>
+                <a href="#section_5">¡Apoyanos!</a>
             </div>
-            </nav>
         </header>
         <div class="divider" id="section_1"></div>
         <div id="event_form" class="wrapper">
             <div id="join-event" class="join-event">
-                <div class="wrapper timezone" style="border: 3px solid red">
+                <div class="wrapper timezone">
                     <div>
                         <img src="resources/date_time.svg"/>
                     </div>
                     <div id="date_time" class="date_and_time">
                     </div>                
                 </div>
-                <div class="wrapper timezone" style="border: 1px solid black">
+                <div class="wrapper timezone">
                     <div>
                         <img src="resources/location.svg" />
                     </div>
@@ -76,10 +77,9 @@
                 <button class="button" id="button_join_event">Unete al evento</button>
             </div>
             <div id="information-project" class="information_project">
-                <div class="tittle_information_project">titulo</div>
+                <h1 class="tittle_information_project">PRACTICANDO</h1>
                 <div>
-                    Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir 
-                    Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir Descripcion de projecto, aqui va a a ir 
+                    <p><strong>Practicando</strong> es el sitio donde puedes mejorar tus habilidades sin salir de casa. Nuestro proyecto te ayudará a tener confianza al momento de hablar español, además, vas a tener la oportunidad de conocer a otros estudiantes de <strong>español</strong> de todo el mundo.</p> 
                 </div>
             </div>
             <div class="logo">
@@ -89,22 +89,36 @@
         <div id="section_2"></div>
         <div class="work_and_invite" id="work_invite">
             <div id="how_it_works" class="wrapper_center">
-                <label class="tittle"><strong>¿Cómo funciona?</strong></label>
-                <div class="wrapper">
+                <label class="tittle"><strong>Preguntas frecuentes</strong></label>
+                <div class="wrapper frequent_questions">
                     <div class="how_works">
-                        <div>paso 1</div>
+                        <div>
+                            <h3>¿Quién puede unirse?</h3>
+                            <p> Todas las personas que estudien <strong>español</strong> y tengan nivel B1 o superior.
+                            </p>
+                        </div>
                     </div>
                     <div class="how_works">
-                        <div>paso 2</div>
+                        <div>
+                            <h3>¿Cómo funciona?</h3>
+                            <p>Reuniones virtuales con otras personas que estudian <strong>español.</strong> No te preocupes, nostros sugerimos el tema de conversación.</p>
+                        </div>
                     </div>
                     <div  class="how_works">
-                        <div>paso 3</div>
+                        <div>
+                            <h3>¿Cómo participo?</h3>
+                            <p>
+                                Conectate a reuniones en línea en el horario que se muestra en la web. Usamos zoom.
+                            </p>
+                        </div>
                     </div>
                     <div class="how_works">
-                        <div>paso 2</div>
-                    </div>
-                    <div  class="how_works">
-                        <div>paso 3</div>
+                        <div>
+                            <h3>¿Cuánto cuesta?</h3>
+                            <p>
+                                No cuesta nada! <strong>Practicando</strong> es totalmente gratuito.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,7 +126,7 @@
             <div id="invitation_form" class="wrapper_center">
                 <p><strong>Hablar español</strong> con amigos, es mucho mejor!<br>
                     Cuentales sobre el club.<p>
-                <button id="btn_invite_friend" class="button button_send_invitation">Invitar a un amigo</button>
+                <button id="btn_invite_friend" class="button button_send_invitation">Invitar a un amigo<img src="resources/person_add.svg"/></button>
             </div>
         </div>
         <div id="section_4"></div>
@@ -135,7 +149,7 @@
                     <textarea id="comment" name="comment" placeholder="Escribe tu comentario o sugerencia.."></textarea>
                     <span id="commentError" class="error"></span> 
                     
-                    <button id="send-email-button" class="button button_contact">Enviar</button>
+                    <button id="send-email-button" class="button button_contact">Enviar<img src="resources/email_sending.svg"/></button>
                 </div>
                 <div id="information-form" class="information-form">
                     CONTACTANOS
@@ -145,5 +159,11 @@
 
         </div>
     </body>
+    <div class="divider" id="section_5"></div>
+    <footer >
+        
+        <p>Tu apoyo es muy importante para que este proyecto siga adelante, ayúdanos a continuar.</p>
+        <button class="button">BUY US A COFFEE</button>
+    </footer>
     <script src="scripts/script.js"></script> 
 </html>
