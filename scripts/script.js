@@ -37,7 +37,7 @@ const commentError = document.getElementById("commentError");
 const btnJoinEvent = document.getElementById("button_join_event");
 
 
-const date = new Date("2024-05-28T09:53:00.000Z");
+const date = new Date("2024-05-30T16:00:00.000Z");
 const oneHourBeforeEvent = new Date(date.getTime() - 60 * 60 * 1000);
 console.log(`this is one hour before`,oneHourBeforeEvent);
 const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
