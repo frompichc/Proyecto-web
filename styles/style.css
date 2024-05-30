@@ -65,7 +65,7 @@ body {
   }
 
   .dropdown_menu.open {
-    height: 225px;
+    height: 275px;
   }
 
   
@@ -101,13 +101,20 @@ body {
 }
 
 #event_form{
-  gap:20px;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
   .divider{
     padding-top: 70px;
   }
+
+  .divline{
+    padding-top: 10px;
+    width: 100vh;
+    border: #051B36 1px solid;
+  }
+
 
   .send_contact_form {
     flex: 1; /* Los divs internos ocuparán el mismo espacio */
@@ -183,22 +190,12 @@ body {
   /*------------- SLOGAN --------------*/
   .slogan{
       color: #051B36;;
-      text-shadow: 2px 2px 0px rgba(149, 151, 164, 1);
       margin: 0;
   }
 
   .line1{
-    font-size: 95px;
+    font-size: 30px;
   }
-
-  .line2{
-    font-size: 85px;
-  }
-
-  .line3{
-    font-size: 50px;
-  }
-
   
   /* ------ MODAL SEND INVITATION TO A FRIEND ------*/
   .invite_friend{
@@ -290,17 +287,53 @@ body {
     padding: 20px;
   }
 
-  .join-event {
+  .join_event {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: left;
     border-radius: 20px;
     margin: 10px 80px 0px 80px;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.37);
-    /*border: solid 1px black;*/
-    padding: 20px;
+    padding: 20px 10px 10px 40px;
   }
+
+  .topic {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  .topic.logo{
+    width: 300px;
+    height: 250px;
+    border: 2px solid #051B36;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  .topic.title{
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #051B36;
+  }
+  
+  .timezone {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 3px;
+    margin: 0 0 20px 5px;
+    font-size: 16px;
+    color: #051B36;
+  }
+
+  .timezone img{
+    width: 25px;
+    height: 25px;
+  }
+
+
 
   .logo {
     display: flex;
@@ -309,24 +342,16 @@ body {
   }
 
   .logo img{
-    height: 350px;
-    width: 350px;
+    height: 200px;
+    width: 200px;
   }
 
-  .wrapper .timezone .date_and_time{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin-left: 5px;
-  }
 
   .information_project {
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
-    /*border: 3px solid #F7D060;*/
-    /*box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.37);*/
     border-radius: 20px;
     padding: 10px;
   }
@@ -357,14 +382,13 @@ body {
     margin: 0;
     font-size: 20px;
     width: 230px;
- 
     padding-left: 10px;
     background-color: #F2F2F2;
     color: #051B36;
   }
 
   .tittle_contact{
-    color: #FF6D60;
+    color: #051B36;
     height: 40px;
     font-size: 35px;
     border-radius: 10px;
@@ -487,7 +511,6 @@ footer button {
   transition: background-color 0.4s; /* Transición suave para el cambio de color de fondo */
 }
 
-
   /* ----------- RESPONSIVE DESIGN TABLETS -----------------*/
   @media (max-width: 992px) {
     .header {
@@ -502,12 +525,9 @@ footer button {
       flex-direction: column-reverse;
     }
 
-    /*.wrapper.frequent_questions{
-      
+    .wrapper.frequent_questions{
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }*/
+    }
 
     .wrapper_center label{
       text-align: center;
@@ -516,11 +536,6 @@ footer button {
     .how_works{
       margin: 10px 0 10px 0;
     }
-
-    .wrapper .timezone{
-      flex-direction: row;
-    }
-  
 
     .send_contact_form input[type="text"],
     .send_contact_form input[type="email"],
@@ -542,6 +557,17 @@ footer button {
 
     .button_send_invitation{
       width: 300px;
+    }
+
+    .line1{
+      font-size: 25px;
+    }
+
+    .topic{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     
   }
@@ -578,6 +604,16 @@ footer button {
     .error {
       width: 400px;
     }
+
+    .line1{
+      font-size: 20px;
+    }
+
+    .logo img{
+      height: 150px;
+      width: 150px;
+    }
+  
   
   }
 
@@ -615,6 +651,25 @@ footer button {
       display: flex;
       flex-direction: column-reverse;
     }
+
+    .line1{
+      font-size: 15px;
+    }
+
+    .join_event{
+      margin: 10px 20px 0px 20px;
+      padding: 20px 10px 10px 10px;
+    }
+
+    .topic.logo{
+      width: 250px;
+      height: 200px;
+    }
+
+    .topic.title{
+      font-size: 30px;
+    }
+
   }
 
     /* ----------- RESPONSIVE DESIGN PHONES -----------------*/
@@ -645,6 +700,10 @@ footer button {
       .invite_friend span,
       .invite_friend .button {
         width: 290px;
+      }
+
+      .topic.title{
+        font-size: 30px;
       }
 
     }

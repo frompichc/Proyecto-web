@@ -1,4 +1,3 @@
-
 // Text elements for contact form
 const firstName = document.getElementById("fname");
 const emailSender = document.getElementById("emailsender");
@@ -23,9 +22,6 @@ const toggleBtn = document.getElementById("toggle_btn");
 const dropDownMenu = document.getElementById("dropdown_menu");
 const dropDownMenuOptions = dropDownMenu.querySelectorAll(`a`);
 
-// Elements for date and time in event area
-const showDateTime = document.getElementById("date_time");
-const showTimeZone = document.getElementById("time_zone");
 
 // Error elements
 const nameError = document.getElementById("nameError");
@@ -33,34 +29,14 @@ const emailError = document.getElementById("emailError");
 const subjectError = document.getElementById("subjectError");
 const commentError = document.getElementById("commentError");
 
-// Event elements
-const btnJoinEvent = document.getElementById("button_join_event");
-
-
-const date = new Date("2024-05-30T16:00:00.000Z");
-const oneHourBeforeEvent = new Date(date.getTime() - 60 * 60 * 1000);
-console.log(`this is one hour before`,oneHourBeforeEvent);
-const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-dateOptions.timeZoneName = "long";
-let dateString = date.toLocaleDateString('es-ES', dateOptions);
-let timeString = date.toLocaleTimeString('es-ES', timeOptions);
-const showDate = dateString.split(',');
-
-
-showDateTime.innerText = showDate[0] + showDate[1] + ' ' + timeString;
-showTimeZone.innerText = showDate[2];
-
 //Dropdown Menu
 toggleBtn.addEventListener("click", () => {
     dropDownMenu.classList.toggle(`open`);
 })
 
-console.info(dropDownMenuOptions);
 
 dropDownMenuOptions.forEach(option => {
     option.addEventListener(`click`, () => {
-        console.info("entra aqui")
         dropDownMenu.classList.remove('open');
     })
 })
@@ -74,8 +50,6 @@ btnSendEmail.addEventListener("click", () => {
                 emailMessageModal.style.display = "none";
                 emailMessageModal.close();
             }, 3000);*/
-
-  
 
     if (sendEmail) {
         emailjs.init("IJgiBa0KaSMTs4014");
@@ -111,16 +85,12 @@ btnSendEmail.addEventListener("click", () => {
             comment.value = ``;
             cleanContactForm();
         });
-
-    
-    }
-
-    
-    
+    }    
 })
 
 
-//----- BUTTON JOIN EVENT ----
+
+/*
 btnJoinEvent.disabled = true;
 
 btnJoinEvent.addEventListener(`click`, () => {
@@ -136,7 +106,6 @@ function checkTime() {
     } else {
         // Calcula el tiempo restante y establece un temporizador
         const timeUntilActivation = oneHourBeforeEvent - now;
-        console.log(timeUntilActivation);
         setTimeout(activateButton, timeUntilActivation);
     }
 }
@@ -146,6 +115,9 @@ function activateButton() {
 }
 
 checkTime();
+*/
+
+
 
 
 //------ BUTTONS FOR MODAL INVITE A FRIEND 
@@ -257,3 +229,109 @@ document.addEventListener(`keydown`, function(event) {
         });
     }
 })
+
+
+window.onload = retriveData();
+
+function retriveData() {
+    fetch(`../documents/faq.json`).then(response => {
+        if (!response.ok) {
+            throw new Error(`Network response was not ok`);
+        }
+        return response.json();
+    }).then(data => {
+        loadFaq(data);
+    }).catch(error => {
+        console.error(`Hubo un error cargando la información ${error}`);
+    })
+
+    fetch(`../documents/information.json`).then(response => {
+        if (!response.ok) {
+            throw new Error(`Network response was not ok`);
+        }
+        return response.json();
+    }).then(data => {
+        loadInformation(data[0]);
+    }).catch(error => {
+        console.error(`Hubo un error cargando la información ${error}`);
+    }) 
+}
+
+function loadFaq(data) {
+    const wrapperFaq = document.getElementById(`wrapper_frequent_questions`);
+    data.forEach(item => {
+        const faqDiv = document.createElement(`div`);
+        const faqDivIntern = document.createElement(`div`);
+        const faqTitle = document.createElement(`h3`);
+        const faqText = document.createElement(`p`);
+
+        faqDiv.className = `how_works`;
+
+        faqTitle.innerHTML = item.title;
+        faqText.innerHTML = item.text;
+
+        wrapperFaq.appendChild(faqDiv);
+        faqDiv.appendChild(faqDivIntern);
+        faqDivIntern.appendChild(faqTitle);
+        faqDivIntern.appendChild(faqText);
+    })
+}
+
+function loadInformation(data) {
+    console.info(data);
+    const wrapperJoinEvent = document.getElementById(`wrapper_join_event`);
+    //data.forEach(item => {
+        console.info(data.title);
+        const joinEventDiv = document.createElement(`div`);
+        const topicDiv = document.createElement(`div`);
+        const topicImage = document.createElement(`img`);
+        const topicDivLevel1 = document.createElement(`div`);
+        const topicDivLevel2 = document.createElement(`div`);
+        const topicDivTimeZone = document.createElement(`div`);
+        const topicSpan = document.createElement(`span`)
+        const topicButton = document.createElement(`button`);
+        const topicImgDateTime = document.createElement(`img`);
+
+        joinEventDiv.className = `join_event`;
+        topicDiv.className = `topic`;
+        topicImage.className = `topic logo`;
+        topicSpan.className = `topic title`;
+        topicDivTimeZone.className = `timezone`;
+        topicButton.className = `button`;
+
+        joinEventDiv.id = `join_event`;
+        topicDivTimeZone.id = `date_time`;
+        topicButton.id = `button_join_event`;
+
+        topicSpan.innerHTML = data.title;
+
+        const date = new Date(data.date_time);
+        const oneHourBeforeEvent = new Date(date.getTime() - 60 * 60 * 1000);
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+        dateOptions.timeZoneName = "long";
+        let dateString = date.toLocaleDateString('es-ES', dateOptions);
+        let timeString = date.toLocaleTimeString('es-ES', timeOptions);
+        const showDate = dateString.split(',');
+
+        topicImgDateTime.src = `../resources/date_time.svg`;
+        topicImage.src = data.url_img;
+        topicButton.textContent = `Únete al evento`;
+
+        wrapperJoinEvent.appendChild(joinEventDiv);
+        joinEventDiv.appendChild(topicDiv);
+        topicDiv.appendChild(topicImage);
+        topicDiv.appendChild(topicDivLevel1);
+        topicDivLevel1.appendChild(topicSpan);
+        topicDivLevel1.appendChild(topicDivLevel2);
+        topicDivLevel2.appendChild(topicDivTimeZone);
+        topicDivTimeZone.appendChild(topicImgDateTime);
+        topicDivTimeZone.innerHTML += showDate[0] + showDate[1] + ' ' + timeString;
+        topicDivLevel2.appendChild(topicButton);
+        topicButton.addEventListener(`click`, () => {
+            window.open(data.url_zoom);
+        })
+
+
+    //})
+}

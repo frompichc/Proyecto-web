@@ -1,0 +1,23 @@
+[
+    {
+        "title": "¿Cómo es tu barrio?",
+        "date_time": "2024-06-13T15:00:00.000Z",
+        "url_img": "../resources/image_topic1.avif",
+        "button": true,
+        "url_zoom": "https://us04web.zoom.us/j/72949553754?pwd=aaS3qhM9FYkvrWPeN2QGo3ykX97abb.1"
+    },
+    {
+        "title": "Mi rutina diaria",
+        "date_time": "2024-07-12T10:00:00.000Z",
+        "url_img": "../resources/image_topic2.jpg",
+        "button": false,
+        "url_zoom": "https://us04web.zoom.us/j/72949553754?pwd=aaS3qhM9FYkvrWPeN2QGo3ykX97abb.1"
+    },
+    {
+        "title": "¿Prefieres vivir en la ciudad o en el campo?",
+        "date_time": "2024-08-12T12:00:00.000Z",
+        "url_img": "../resources/image_topic3.jpg",
+        "button": false,
+        "url_zoom": "https://us04web.zoom.us/j/72949553754?pwd=aaS3qhM9FYkvrWPeN2QGo3ykX97abb.1"
+    }
+]

@@ -41,92 +41,51 @@
         <header class="header" id="header">
             <div class="navbar">
                 <a href="#section_1">Inicio</a>
+                <a href="/pages/sesion.html">Sesiones</a>
                 <a href="#section_2">Preguntas frecuentes</a>
                 <a href="#section_3">Invita a un amigo</a>
                 <a href="#section_4">Contacto</a>
                 <a href="#section_5">¡Apoyanos!</a>
+                
             </div>
             <div class="toggle_btn" id="toggle_btn">
                 <img src="resources/menu_bars.svg" />
             </div>
             <div class="dropdown_menu" id="dropdown_menu">
                 <a href="#section_1">Inicio</a>
+                <a href="/pages/sesion.html">Sesiones</a>
                 <a href="#section_2">Preguntas frecuentes</a>
                 <a href="#section_3">Invita a un amigo</a>
                 <a href="#section_4">Contacto</a>
                 <a href="#section_5">¡Apoyanos!</a>
             </div>
         </header>
+
         <div class="divider" id="section_1"></div>
-        <div id="event_form" class="wrapper">
+        <div id="event_form" class="wrapper">    
+            <div class="logo">
+                <img src="resources/logo_practicando.jpeg"/>
+            </div>
             <div id="information-project" class="information_project">
                 <h1 class="slogan">
-                    <span class="line1"><strong>PRACTICA</strong><br>
-                    <span class="line2"> ESPAÑOL</strong></span><br>
-                    <span class="line3">sin salir de casa.</span>
+                    <span class="line1"><strong>PRACTICA ESPAÑOL SIN SALIR DE CASA</strong><br>
                 </h1>
             </div>
-            <div class="logo">
-                <img src="resources/logo_practicando.png"/>
-            </div>
         </div>
-        <div id="join-event" class="join-event">
-            <div class="wrapper timezone">
-                <div>
-                    <img src="resources/date_time.svg"/>
-                </div>
-                <div id="date_time" class="date_and_time">
-                </div>                
-            </div>
-            <div class="wrapper timezone">
-                <div>
-                    <img src="resources/location.svg" />
-                </div>
-                <div id="time_zone" class="date_and_time">
-                </div>
-            </div>
-            <button class="button" id="button_join_event">Unete al evento</button>
+        <div style="border-top: 3px solid #e9ecef; text-align: center; margin-top: 10px;"> 
+            <p style="margin-top: 10px; font-size: 30px; color: #051B36;">Próxima sesión</p>
         </div>
+
+        <div id="wrapper_join_event"> 
+            <!-- HERE'S EVENT SECTION  -->    
+        </div>
+
         <div id="section_2"></div>
         <div class="work_and_invite" id="work_invite">
             <div id="how_it_works" class="wrapper_center">
                 <label class="tittle"><strong>Preguntas frecuentes</strong></label>
-                <div class="wrapper frequent_questions">
-                    <div class="how_works">
-                        <div>
-                            <h3>¿Qué es Practicando?</h3>
-                            <p><strong>Practicando</strong> es el sitio donde puedes mejorar tu <strong>español</strong> sin salir de casa. Unete y conoce a más personas que estudian <strong>español.</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="how_works">
-                        <div>
-                            <h3>¿Quién puede unirse?</strong></h3>
-                            <p>Todas las personas que estudien <strong>español</strong> y tengan nivel B1 o superior.</p>
-                        </div>
-                    </div>
-                    <div class="how_works">
-                        <div>
-                            <h3>¿Cómo funciona?</h3>
-                            <p>Reuniones virtuales con otras personas que estudian <strong>español.</strong> No te preocupes, nostros sugerimos el tema de conversación.</p>
-                        </div>
-                    </div>
-                    <div  class="how_works">
-                        <div>
-                            <h3>¿Cómo participo?</h3>
-                            <p>
-                                Conectate a reuniones en línea en el horario que se muestra en la web. Usamos zoom.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="how_works">
-                        <div>
-                            <h3>¿Cuánto cuesta?</h3>
-                            <p>
-                                No cuesta nada! <strong>Practicando</strong> es totalmente gratuito.
-                            </p>
-                        </div>
-                    </div>
+                <div class="wrapper frequent_questions" id="wrapper_frequent_questions">
+                    <!-- HERE'S FAQ SECTION -->
                 </div>
             </div>
             <div class="divider" id="section_3"></div>
@@ -138,6 +97,7 @@
         </div>
         <div id="section_4"></div>
         <div class="tittle_contact" id="contact_section"><h3>CONTACTANOS</h3></div>
+
             <div id="contact_form" class="wrapper">
                 <div id="send-contact-form" class="send_contact_form">
                     <label for="fname">Nombre</label>
@@ -167,8 +127,7 @@
         </div>
     </body>
     <div class="divider" id="section_5"></div>
-    <footer >
-        
+    <footer>
         <p>Tu apoyo es muy importante para que este proyecto siga adelante, ayúdanos a continuar.</p>
         <button class="button">BUY US A COFFEE</button>
     </footer>
