@@ -537,26 +537,25 @@ footer button {
 .progress-bar{
   position: relative;
   width: 350px;
-  height: 1em;
+  height: 20px;
   background-color: #F2F2F2;
-  border-radius: 1em;
+  border-radius: 40px;
 }
 
-.progress-bar::before{
-  content: '';
-  display: flex;
-  align-items: center;
-  position: absolute;
-  left: .1em;
-  top: .1em;
-  bottom: .1em;
-  width: calc(var(--width, 0) * 1%);
-  min-width: 1rem;
-  max-width: calc(100% - .1em);
+.line-bar{
+  height: 15px;
+  border-radius: 40px;
   background-color: #FF6D60;
-  border-radius: 1em;
-  padding: .1em;
-  box-sizing: border-box;
+  animation: loading 4.9s forwards cubic-bezier(0,0,0,0);
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }  
 }
 
   /* ----------- RESPONSIVE DESIGN TABLETS -----------------*/

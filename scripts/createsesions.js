@@ -10,7 +10,6 @@ export function loadInformation(data, isList) {
 };
 
 function fillInformation(item, wrapperJoinEvent) {
-        console.info(item.title);
         const joinEventDiv = document.createElement(`div`);
         const topicDiv = document.createElement(`div`);
         const topicImage = document.createElement(`img`);

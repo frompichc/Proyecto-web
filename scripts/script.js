@@ -51,7 +51,7 @@ dropDownMenuOptions.forEach(option => {
 //Send Email in contact Form
 btnSendEmail.addEventListener("click", () => {
     let sendEmail = true;
-    //sendEmail = validateFormEmail();
+    sendEmail = validateFormEmail();
 
     if (sendEmail) {
         btnSendEmail.style.display = `none`;
@@ -66,28 +66,19 @@ btnSendEmail.addEventListener("click", () => {
             subject: subject.value,
         };
         
-        /*let serviceID = "service_contact_form";
+        let serviceID = "service_contact_form";
         let templateID = "contact_template";
         emailjs.send(serviceID, templateID, params)
-        .then(res => {*/
+        .then(res => {
+            console.log(res, "res");
             createMessage(
                 `Muchas gracias`,
                 `Hemos recibido tus comentarios, nos comuncaremos contigo pronto.`,
                 `resources/email_sent.svg`
             );
             //Progress bar
-            const progressBar = document.getElementById(`progress_bar_notification`);
             emailMessageModal.showModal();
-            
-            progressBar.style.setProperty(`--width`, 0);
             emailMessageModal.style.display = "flex";
-            const intervalID = setInterval(() => {
-                const computedStyle = getComputedStyle(progressBar);
-                const width = parseFloat(computedStyle.getPropertyValue(`--width`)) || 0;
-                console.log(width);
-                progressBar.style.setProperty(`--width`, width + .15);
-            }, 0)
-
             setTimeout(() => {               
                 firstName.value = ``;
                 emailSender.value = ``;
@@ -98,18 +89,29 @@ btnSendEmail.addEventListener("click", () => {
                 emailMessageModal.close();
                 btnSendEmail.style.display = `inline`;
                 bntLoadingContact.style.display = `none`;
-                clearInterval(intervalID);
             }, 5000);
 
-/*})
+        })
         .catch(err => {
-            alert(`Ocurrió un error al enviar el correo electronico ${err.message}`);
-            firstName.value = ``;
-            emailSender.value = ``;
-            subject.value = ``;
-            comment.value = ``;
-            cleanContactForm();
-        });*/
+            createMessage(
+                `Lo sentimos!`,
+                `Tu correno no pudo enviarse. Intenta más tarde`,
+                `resources/notification_alert.svg`
+            );
+            emailMessageModal.showModal();
+            emailMessageModal.style.display = "flex";
+            setTimeout(() => {               
+                firstName.value = ``;
+                emailSender.value = ``;
+                subject.value = ``;
+                comment.value = ``;
+                cleanContactForm();
+                emailMessageModal.style.display = "none";
+                emailMessageModal.close();
+                btnSendEmail.style.display = `inline`;
+                bntLoadingContact.style.display = `none`;
+            }, 5000);
+        });
     }    
 })
 
@@ -127,13 +129,13 @@ btnInviteFriend.addEventListener("click", () => {
 //Send email in invite a friend form
 btnSendInvitation.addEventListener(`click`, () => {
     let sendEmail = true;
-    //sendEmail = validateInviteFriendForm();
+    sendEmail = validateInviteFriendForm();
 
     if(sendEmail) {
         btnSendInvitation.style.display = `none`;
         btnLoadingInvite.style.display = `grid`;
 
-        /*emailjs.init("IJgiBa0KaSMTs4014");
+        emailjs.init("IJgiBa0KaSMTs4014");
         let params = {
             from_name: txtHostName.value,
             to_email: txtEmailGuest.value,
@@ -141,22 +143,14 @@ btnSendInvitation.addEventListener(`click`, () => {
         let serviceID = "service_contact_form";
         let templateID = "invitation_template";
         emailjs.send(serviceID, templateID, params)
-        .then(res => {*/
+        .then(res => {
             createMessage(
                 `Muchas gracias`,
                 `La invitación se ha enviado a tu amigo.`,
                 `resources/email_sent.svg`
             );
             //Progress bar
-            const progressBar = document.getElementById(`progress_bar_notification`);
-            progressBar.style.setProperty(`--width`, 0);
-            emailMessageModal.showModal()
-            const intervalID = setInterval(() => {
-                const computedStyle = getComputedStyle(progressBar);
-                const width = parseFloat(computedStyle.getPropertyValue(`--width`)) || 0;
-                console.log(width);
-                progressBar.style.setProperty(`--width`, width + .15);
-            }, 0)
+            emailMessageModal.showModal();
             emailMessageModal.style.display = "flex";
             setTimeout(() => {
                 txtHostName.value = ``;
@@ -167,14 +161,27 @@ btnSendInvitation.addEventListener(`click`, () => {
                 inviteFriendModal.close();
                 btnSendInvitation.style.display = `inline`;
                 btnLoadingInvite.style.display = `none`;
-                clearInterval(intervalID);
             }, 5000);
-        /*})
+        })
         .catch(err => {
-            alert(`Ocurrió un error al enviar el correo electronico ${err.message}`);
-            txtHostName.value = ``;
-            txtEmailGuest.value = ``;
-        });*/
+            createMessage(
+                `Lo sentimos!`,
+                `Tu correno no pudo enviarse. Intenta más tarde`,
+                `resources/notification_alert.svg`
+            );
+            emailMessageModal.showModal();
+            emailMessageModal.style.display = "flex";
+            setTimeout(() => {
+                txtHostName.value = ``;
+                txtEmailGuest.value = ``;
+                emailMessageModal.style.display = "none";
+                emailMessageModal.close();
+                inviteFriendModal.style.display = "none";
+                inviteFriendModal.close();
+                btnSendInvitation.style.display = `inline`;
+                btnLoadingInvite.style.display = `none`;
+            }, 5000);        
+        });
     }
 })
 
@@ -199,7 +206,6 @@ function validateFormEmail() {
     const validEmail = emailRegex.test(emailSender.value);
 
     if(!validEmail) {
-        console.log("Entra aqui")
         emailError.textContent = "Ingresa un email valido";
         emailSender.style.border = "1px solid #f90a0a";
         noError = false;
@@ -325,6 +331,7 @@ function createMessage(title, message, img) {
     const imgMessage = document.createElement(`img`);
     const divContainerMsg = document.createElement(`div`);
     const progressBar = document.createElement(`div`);
+    const lineBar = document.createElement(`div`);
     const tittleMessage = document.createElement(`h2`);
     const textMessage = document.createElement(`p`)
 
@@ -339,6 +346,9 @@ function createMessage(title, message, img) {
 
     progressBar.className = `progress-bar`;
     progressBar.id = `progress_bar_notification`;
+    lineBar.className = `line-bar`;
+
+    progressBar.appendChild(lineBar);
 
     emailMessageModal.appendChild(divContainerImg);
     emailMessageModal.appendChild(divContainerMsg);
