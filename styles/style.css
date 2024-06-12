@@ -258,10 +258,6 @@ body {
     margin-right: 0; 
 }
 
-#invitation_send_button{
-  margin-bottom: 10px;
-}
-
 .work_and_invite{
   background-color: #F2F2F2;
   padding: 40px 0 40px 0;
@@ -402,6 +398,7 @@ body {
   /*----- BUTTONS -----*/
 
   .button{
+    display: inline;
     background-color: #FF6D60;
     color: #FFFFFF;
     border: 0;
@@ -421,6 +418,12 @@ body {
   .button_contact{
     width: 500px;
     height: 40px;
+  }
+
+  .button_loading{
+    width: 500px;
+    height: 40px;
+    display: none;
   }
 
   .button_send_invitation{
@@ -446,11 +449,12 @@ body {
     border: 1px solid #dedddd;
   }
 
-  .invite_friend #invitation_send_button{
+  .invite_friend #invitation_send_button,
+  .invite_friend #loading_button_invite {
     width: 200px;
     height: 40px;
+    margin-bottom: 10px;
   }
-
 
   .button img{
     margin-left: 8px;
@@ -509,6 +513,50 @@ footer button {
   border-radius: 5px; /* Bordes redondeados */
   cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
   transition: background-color 0.4s; /* Transición suave para el cambio de color de fondo */
+}
+
+.loader{
+  pointer-events: none;
+  width: 25px;
+  height: 25px;
+  border: 3px solid transparent;
+  border-radius: 50px;
+  border-top-color: #FFFFFF;
+  animation: an1 1s ease infinite;
+}
+
+@keyframes an1 {
+  0%{
+    transform: rotate(0turn);
+  }
+  100%{
+    transform: rotate(1turn);
+  }
+}
+
+.progress-bar{
+  position: relative;
+  width: 350px;
+  height: 1em;
+  background-color: #F2F2F2;
+  border-radius: 1em;
+}
+
+.progress-bar::before{
+  content: '';
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: .1em;
+  top: .1em;
+  bottom: .1em;
+  width: calc(var(--width, 0) * 1%);
+  min-width: 1rem;
+  max-width: calc(100% - .1em);
+  background-color: #FF6D60;
+  border-radius: 1em;
+  padding: .1em;
+  box-sizing: border-box;
 }
 
   /* ----------- RESPONSIVE DESIGN TABLETS -----------------*/
@@ -612,6 +660,13 @@ footer button {
     .logo img{
       height: 150px;
       width: 150px;
+    }
+
+    
+    #invitation_form{
+      font-size: 20px;
+      border-radius: 20px;
+      margin: 10px 20px 0px 20px;
     }
   
   

@@ -10,13 +10,7 @@
     </head>
     <body>
         <dialog data-modal id="email_message" class="email_message" >
-            <div class="image">
-                <img src="resources/email_sent.svg"/>
-            </div>
-            <div>
-                <h2>Muchas gracias</h2>
-                <p>Hemos recibido tus comentarios, nos estaremos comunicando contigo muy pronto.</p>
-            </div>
+            
         </dialog>
 
 
@@ -34,7 +28,10 @@
 
             <div id="button_invite_friend">
                 <button class="button" id="invitation_cancel_button">Cancelar</button>    
-                <button class="button" id="invitation_send_button">Enviar<img src="resources/email_sending.svg"/></button>    
+                <button class="button" id="invitation_send_button">Enviar<img src="resources/email_sending.svg"/></button>  
+                <button class="button button_loading" id="loading_button_invite">
+                    <div class="loader"></div>
+                </button>  
             </div>
         </dialog>
 
@@ -91,7 +88,7 @@
             <div class="divider" id="section_3"></div>
             <div id="invitation_form" class="wrapper_center">
                 <p><strong>Hablar español</strong> con amigos, es mucho mejor!<br>
-                    Cuentales sobre el club.<p>
+                    Cuentales sobre <strong>Practicando</strong>.<p>
                 <button id="btn_invite_friend" class="button button_send_invitation">Invitar a un amigo<img src="resources/person_add.svg"/></button>
             </div>
         </div>
@@ -116,7 +113,12 @@
                     <textarea id="comment" name="comment" placeholder="Escribe tu comentario o sugerencia.."></textarea>
                     <span id="commentError" class="error"></span> 
                     
-                    <button id="send-email-button" class="button button_contact">Enviar<img src="resources/email_sending.svg"/></button>
+                    <button id="send-email-button" class="button button_contact">
+                        Enviar<img src="resources/email_sending.svg"/>
+                    </button>
+                    <button class="button button_loading" id="loading_button_contact">
+                        <div class="loader"></div>
+                    </button>
                 </div>
                 <div id="information-form" class="information-form">
                     CONTACTANOS
@@ -131,5 +133,5 @@
         <p>Tu apoyo es muy importante para que este proyecto siga adelante, ayúdanos a continuar.</p>
         <button class="button">BUY US A COFFEE</button>
     </footer>
-    <script src="scripts/script.js"></script> 
+    <script type="module" src="scripts/script.js"></script> 
 </html>

@@ -1,9 +1,12 @@
+import { loadInformation } from "./createsesions.js";
+
 // Text elements for contact form
 const firstName = document.getElementById("fname");
 const emailSender = document.getElementById("emailsender");
 const subject = document.getElementById("subject");
 const comment = document.getElementById("comment");
 const btnSendEmail = document.getElementById("send-email-button");
+const bntLoadingContact = document.getElementById(`loading_button_contact`);
 
 const emailMessageModal = document.getElementById("email_message");
 const btnInviteFriend = document.getElementById("btn_invite_friend");
@@ -16,6 +19,7 @@ const txtHostName = document.getElementById(`host_name`);
 const txtEmailGuest = document.getElementById(`email_guest`);
 const spanHostNameError = document.getElementById(`host_name_error`);
 const spanEmailGuestError = document.getElementById(`email_guest_error`);
+const btnLoadingInvite = document.getElementById(`loading_button_invite`);
 
 //Dropdown menu
 const toggleBtn = document.getElementById("toggle_btn");
@@ -29,6 +33,8 @@ const emailError = document.getElementById("emailError");
 const subjectError = document.getElementById("subjectError");
 const commentError = document.getElementById("commentError");
 
+
+
 //Dropdown Menu
 toggleBtn.addEventListener("click", () => {
     dropDownMenu.classList.toggle(`open`);
@@ -41,32 +47,48 @@ dropDownMenuOptions.forEach(option => {
     })
 })
 
+
+//Send Email in contact Form
 btnSendEmail.addEventListener("click", () => {
     let sendEmail = true;
-    sendEmail = validateFormEmail();
-    /*emailMessageModal.showModal()
-            emailMessageModal.style.display = "flex";
-            setTimeout(function() {
-                emailMessageModal.style.display = "none";
-                emailMessageModal.close();
-            }, 3000);*/
+    //sendEmail = validateFormEmail();
 
     if (sendEmail) {
+        btnSendEmail.style.display = `none`;
+        bntLoadingContact.style.display = `grid`;
+
         emailjs.init("IJgiBa0KaSMTs4014");
         let params = {
             to_name: "Fredy Rompich",
             from_name: firstName.value,
+            reply_to: emailSender.value,
             message: comment.value,
             subject: subject.value,
         };
         
-        let serviceID = "service_contact_form";
+        /*let serviceID = "service_contact_form";
         let templateID = "contact_template";
         emailjs.send(serviceID, templateID, params)
-        .then(res => {
-            emailMessageModal.showModal()
+        .then(res => {*/
+            createMessage(
+                `Muchas gracias`,
+                `Hemos recibido tus comentarios, nos comuncaremos contigo pronto.`,
+                `resources/email_sent.svg`
+            );
+            //Progress bar
+            const progressBar = document.getElementById(`progress_bar_notification`);
+            emailMessageModal.showModal();
+            
+            progressBar.style.setProperty(`--width`, 0);
             emailMessageModal.style.display = "flex";
-            setTimeout(function() {
+            const intervalID = setInterval(() => {
+                const computedStyle = getComputedStyle(progressBar);
+                const width = parseFloat(computedStyle.getPropertyValue(`--width`)) || 0;
+                console.log(width);
+                progressBar.style.setProperty(`--width`, width + .15);
+            }, 0)
+
+            setTimeout(() => {               
                 firstName.value = ``;
                 emailSender.value = ``;
                 subject.value = ``;
@@ -74,50 +96,22 @@ btnSendEmail.addEventListener("click", () => {
                 cleanContactForm();
                 emailMessageModal.style.display = "none";
                 emailMessageModal.close();
+                btnSendEmail.style.display = `inline`;
+                bntLoadingContact.style.display = `none`;
+                clearInterval(intervalID);
+            }, 5000);
 
-            }, 3000);
-        })
+/*})
         .catch(err => {
-            alert("Error enviando mensaje", err.message);
+            alert(`Ocurrió un error al enviar el correo electronico ${err.message}`);
             firstName.value = ``;
             emailSender.value = ``;
             subject.value = ``;
             comment.value = ``;
             cleanContactForm();
-        });
+        });*/
     }    
 })
-
-
-
-/*
-btnJoinEvent.disabled = true;
-
-btnJoinEvent.addEventListener(`click`, () => {
-    window.open(`https://us04web.zoom.us/j/72949553754?pwd=aaS3qhM9FYkvrWPeN2QGo3ykX97abb.1`);
-})
-
-
-//---- COUNTDOWN FOR ACTIVATE JOIN EVENT BUTTON
-function checkTime() {
-    const now = new Date();
-    if (now >= oneHourBeforeEvent) {
-        activateButton();
-    } else {
-        // Calcula el tiempo restante y establece un temporizador
-        const timeUntilActivation = oneHourBeforeEvent - now;
-        setTimeout(activateButton, timeUntilActivation);
-    }
-}
-
-function activateButton() {
-    btnJoinEvent.disabled = false;
-}
-
-checkTime();
-*/
-
-
 
 
 //------ BUTTONS FOR MODAL INVITE A FRIEND 
@@ -126,15 +120,61 @@ btnInviteFriend.addEventListener("click", () => {
     txtEmailGuest.value = ``;
     cleanInvitationForm();
     inviteFriendModal.showModal();
+    
     inviteFriendModal.style.display = "flex";
 })
 
+//Send email in invite a friend form
 btnSendInvitation.addEventListener(`click`, () => {
-    let sendInvitation = true;
-    sendInvitation = validateInviteFriendForm();
-    if (sendInvitation) {
-        inviteFriendModal.style.display = "none";
-        inviteFriendModal.close();
+    let sendEmail = true;
+    //sendEmail = validateInviteFriendForm();
+
+    if(sendEmail) {
+        btnSendInvitation.style.display = `none`;
+        btnLoadingInvite.style.display = `grid`;
+
+        /*emailjs.init("IJgiBa0KaSMTs4014");
+        let params = {
+            from_name: txtHostName.value,
+            to_email: txtEmailGuest.value,
+        };
+        let serviceID = "service_contact_form";
+        let templateID = "invitation_template";
+        emailjs.send(serviceID, templateID, params)
+        .then(res => {*/
+            createMessage(
+                `Muchas gracias`,
+                `La invitación se ha enviado a tu amigo.`,
+                `resources/email_sent.svg`
+            );
+            //Progress bar
+            const progressBar = document.getElementById(`progress_bar_notification`);
+            progressBar.style.setProperty(`--width`, 0);
+            emailMessageModal.showModal()
+            const intervalID = setInterval(() => {
+                const computedStyle = getComputedStyle(progressBar);
+                const width = parseFloat(computedStyle.getPropertyValue(`--width`)) || 0;
+                console.log(width);
+                progressBar.style.setProperty(`--width`, width + .15);
+            }, 0)
+            emailMessageModal.style.display = "flex";
+            setTimeout(() => {
+                txtHostName.value = ``;
+                txtEmailGuest.value = ``;
+                emailMessageModal.style.display = "none";
+                emailMessageModal.close();
+                inviteFriendModal.style.display = "none";
+                inviteFriendModal.close();
+                btnSendInvitation.style.display = `inline`;
+                btnLoadingInvite.style.display = `none`;
+                clearInterval(intervalID);
+            }, 5000);
+        /*})
+        .catch(err => {
+            alert(`Ocurrió un error al enviar el correo electronico ${err.message}`);
+            txtHostName.value = ``;
+            txtEmailGuest.value = ``;
+        });*/
     }
 })
 
@@ -251,7 +291,7 @@ function retriveData() {
         }
         return response.json();
     }).then(data => {
-        loadInformation(data[0]);
+        loadInformation(data[0], false);
     }).catch(error => {
         console.error(`Hubo un error cargando la información ${error}`);
     }) 
@@ -277,61 +317,30 @@ function loadFaq(data) {
     })
 }
 
-function loadInformation(data) {
-    console.info(data);
-    const wrapperJoinEvent = document.getElementById(`wrapper_join_event`);
-    //data.forEach(item => {
-        console.info(data.title);
-        const joinEventDiv = document.createElement(`div`);
-        const topicDiv = document.createElement(`div`);
-        const topicImage = document.createElement(`img`);
-        const topicDivLevel1 = document.createElement(`div`);
-        const topicDivLevel2 = document.createElement(`div`);
-        const topicDivTimeZone = document.createElement(`div`);
-        const topicSpan = document.createElement(`span`)
-        const topicButton = document.createElement(`button`);
-        const topicImgDateTime = document.createElement(`img`);
+function createMessage(title, message, img) {
 
-        joinEventDiv.className = `join_event`;
-        topicDiv.className = `topic`;
-        topicImage.className = `topic logo`;
-        topicSpan.className = `topic title`;
-        topicDivTimeZone.className = `timezone`;
-        topicButton.className = `button`;
+    emailMessageModal.innerHTML = ``;
 
-        joinEventDiv.id = `join_event`;
-        topicDivTimeZone.id = `date_time`;
-        topicButton.id = `button_join_event`;
+    const divContainerImg = document.createElement(`div`);
+    const imgMessage = document.createElement(`img`);
+    const divContainerMsg = document.createElement(`div`);
+    const progressBar = document.createElement(`div`);
+    const tittleMessage = document.createElement(`h2`);
+    const textMessage = document.createElement(`p`)
 
-        topicSpan.innerHTML = data.title;
+    divContainerImg.className = `image`;
+    imgMessage.src = img;
+    divContainerImg.appendChild(imgMessage);
 
-        const date = new Date(data.date_time);
-        const oneHourBeforeEvent = new Date(date.getTime() - 60 * 60 * 1000);
-        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-        dateOptions.timeZoneName = "long";
-        let dateString = date.toLocaleDateString('es-ES', dateOptions);
-        let timeString = date.toLocaleTimeString('es-ES', timeOptions);
-        const showDate = dateString.split(',');
+    tittleMessage.innerText = title;
+    textMessage.innerText = message;
+    divContainerMsg.appendChild(tittleMessage);
+    divContainerMsg.appendChild(textMessage);
 
-        topicImgDateTime.src = `../resources/date_time.svg`;
-        topicImage.src = data.url_img;
-        topicButton.textContent = `Únete al evento`;
+    progressBar.className = `progress-bar`;
+    progressBar.id = `progress_bar_notification`;
 
-        wrapperJoinEvent.appendChild(joinEventDiv);
-        joinEventDiv.appendChild(topicDiv);
-        topicDiv.appendChild(topicImage);
-        topicDiv.appendChild(topicDivLevel1);
-        topicDivLevel1.appendChild(topicSpan);
-        topicDivLevel1.appendChild(topicDivLevel2);
-        topicDivLevel2.appendChild(topicDivTimeZone);
-        topicDivTimeZone.appendChild(topicImgDateTime);
-        topicDivTimeZone.innerHTML += showDate[0] + showDate[1] + ' ' + timeString;
-        topicDivLevel2.appendChild(topicButton);
-        topicButton.addEventListener(`click`, () => {
-            window.open(data.url_zoom);
-        })
-
-
-    //})
+    emailMessageModal.appendChild(divContainerImg);
+    emailMessageModal.appendChild(divContainerMsg);
+    emailMessageModal.appendChild(progressBar);
 }
