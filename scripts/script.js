@@ -1,5 +1,6 @@
 import { loadInformation } from "./createsesions.js";
 
+
 // Text elements for contact form
 const firstName = document.getElementById("fname");
 const emailSender = document.getElementById("emailsender");
@@ -34,7 +35,6 @@ const subjectError = document.getElementById("subjectError");
 const commentError = document.getElementById("commentError");
 
 
-
 //Dropdown Menu
 toggleBtn.addEventListener("click", () => {
     dropDownMenu.classList.toggle(`open`);
@@ -56,8 +56,9 @@ btnSendEmail.addEventListener("click", () => {
     if (sendEmail) {
         btnSendEmail.style.display = `none`;
         bntLoadingContact.style.display = `grid`;
-
-        emailjs.init("IJgiBa0KaSMTs4014");
+       
+       
+         emailjs.init("IJgiBa0KaSMTs4014");
         let params = {
             to_name: "Fredy Rompich",
             from_name: firstName.value,
@@ -112,7 +113,7 @@ btnSendEmail.addEventListener("click", () => {
                 bntLoadingContact.style.display = `none`;
             }, 5000);
         });
-    }    
+    }   
 })
 
 

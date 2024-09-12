@@ -211,7 +211,8 @@ body {
     z-index: 1;
     border: 0;
     background-color: #FFFFFF;
-    border-radius: 6px;
+    border-radius: 20px;
+    animation: grow 0.5s forwards;
   }
 
   .invite_friend .image {
@@ -525,15 +526,6 @@ footer button {
   animation: an1 1s ease infinite;
 }
 
-@keyframes an1 {
-  0%{
-    transform: rotate(0turn);
-  }
-  100%{
-    transform: rotate(1turn);
-  }
-}
-
 .progress-bar{
   position: relative;
   width: 350px;
@@ -557,6 +549,25 @@ footer button {
     width: 100%;
   }  
 }
+
+@keyframes an1 {
+  0%{
+    transform: rotate(0turn);
+  }
+  100%{
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes grow {
+  from {
+      transform: scale(0);
+  }
+  to {
+      transform: scale(1);
+  }
+}
+
 
   /* ----------- RESPONSIVE DESIGN TABLETS -----------------*/
   @media (max-width: 992px) {
