@@ -281,6 +281,8 @@ body {
   }
   .information-form {
     flex: 1; /* Los divs internos ocuparán el mismo espacio */
+    display: flex;
+    flex-direction: column;
     padding: 20px;
   }
 
@@ -365,6 +367,17 @@ body {
 
   }
 
+  .contact_list {
+    display: flex;
+    border: 1px solid #051B36;
+    border-radius: 10px;
+    width: 75%;
+    margin: 10px;
+    padding: 10px 0 10px 25px;
+    box-shadow: 5px 5px 0 0.5px #051B36;
+    font-size: 20px;
+  }
+
   .how_works {
     flex: 0 0 ;
     border: 1px solid #051B36;
@@ -414,7 +427,6 @@ body {
     cursor: pointer;
     background-color: #fa4333;
   }
-
   
   .button_contact{
     width: 500px;
@@ -571,6 +583,20 @@ footer button {
 
   /* ----------- RESPONSIVE DESIGN TABLETS -----------------*/
   @media (max-width: 992px) {
+    .information-form {
+      flex: 1; /* Los divs internos ocuparán el mismo espacio */
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      align-items: center;
+    }
+
+    .div_btn_join_event{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .header {
       padding: 20px 50px;
     }
@@ -626,6 +652,7 @@ footer button {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      width: 100%;
     }
     
   }
@@ -634,6 +661,9 @@ footer button {
    
   /* ----------- RESPONSIVE DESIGN PHONES -----------------*/
   @media (max-width: 766px) {
+
+   
+ 
     .navbar {
       display: none;
     }

@@ -26,8 +26,8 @@ function fillInformation(item, wrapperJoinEvent) {
         topicImage.className = `topic logo`;
         topicSpan.className = `topic title`;
         topicDivTimeZone.className = `timezone`;
+        topicDivLevel2.className = `div_btn_join_event`;
         topicButton.className = `button`;
-
 
         joinEventDiv.id = `join_event`;
         topicDivTimeZone.id = `date_time`;
@@ -60,7 +60,8 @@ function fillInformation(item, wrapperJoinEvent) {
         topicDivLevel2.appendChild(topicDivTimeZone);
         topicDivTimeZone.appendChild(topicImgDateTime);
         topicDivTimeZone.innerHTML += showDate[0] + showDate[1] + ' ' + timeString;
-      
+     
+
         if (item.button) {
             topicDivLevel2.appendChild(topicButton);
             topicButton.addEventListener(`click`, () => {
